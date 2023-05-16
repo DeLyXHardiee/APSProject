@@ -1,15 +1,26 @@
-\problemname{Tvaer Thy Sum}
+\problemname{We Work In The Dark, To Serve The Light}
 
-\illustration{.33}{img/thore-2019-square.jpg}{The almighty prophet.}
+\illustration{.33}{img/thore-2019-square.jpg}{Ezio Auditore}
 
-The almighty prophet Thore reaches the top of Mount Sinai and is greeted by God, who inscribes commandments onto a large number of stone tablets. God asks Thore to bring the stone commandments to his people, but he will only give them to him on one condition: Thore has to correctly compute the final tvaersum of the number of commandments.
-
-You are given a positive integer N. Your task is to repeatedly sum the digits of N until you are left with a single digit. That single digit is the output.
+You are Ezio Auditore, famous leader of the Assassin's Creed. Your newest mission has brought you to Rome, where you have learned that a high ranking member of the templar order is hiding. You enter the city, determined to assassinate him before he can carry out his nefarious plan.
+However, when you arrive at your destination your target is nowhere to be found. Instead the place is crawling with Templar guards, looking for you. Realizing, you have been led into a trap, you quickly dive into the shadows before they are able to spot you.
+You are hopelessly outnumbered, so stealth is the only option. Luckily you have "eagle vision", a special ability that grants you an enhanced view of your surroundings and immediately alerts you to how many guards are in close proximity to you. Unfortunately, it has a limited range, but it might make you able to sneak around the guards and take them out one by one.
 
 \section*{Input}
 
-The input is an integer n where 0 <= N <= 10.000.000.000.000.000.000.
+The first line of input contains two integers X, Y (1 $\le$ X, Y $\le$ 1000), the dimensions of the area you are in. After that follows another integer N (1 $\le$ N $\le$ X * Y), containing three integer: coordinates x, y and the number of guards at that position. The coordinates are zero-indexed.
+
+The next line of input contains an integer M (1 $\le$ M $\le$ 1000000), which is the number of queries. Each of the next M lines contains a query. A query can be either of the following three types:
+
+\begin{itemize}
+    \item "Kill x y": This query represents Ezio assassinating a target at a specific coordinate. The value of the cell at that coordinate should be set to zero
+    \item "EagleVision x y r": This query represents Ezio using his eagle vision ability to locate enemies around him within a certain range. x and y represent the coordinates of Ezio's current location, and r represents the range of his eagle vision. The program should output the number of enemies that are within range of Ezio's eagle vision. The range extends horizontally left-right and vertically up-down.
+    \item "Reinforcements x y n": This query represents a number of guards arriving in the area. x y represents their coordinate and n represents their numbers.
+\end{itemize}
 
 \section*{Output}
 
-Their tvaersum.
+\begin{itemize}
+    \item For each "EagleVision" query, output a single integer on a new line, representing the number of enemies that are within range of Ezio's eagle vision.
+    \item There should be no output for "KillTarget" queries or "Reinforcements" queries. 
+\end{itemize}

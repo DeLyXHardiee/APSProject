@@ -1,0 +1,10 @@
+- Also printing for "Kill" and "Reinforcement" queries
+- Ignoring the input coordinates of the guards and simply outputting the total number
+  of guards in the area for every "EagleVision" query.
+- Counting guards outside the range (kinda the same maybe?)
+- Not updating guard counts
+- Miscalculating the range of Ezio's eagle-vision, such as considering a square
+  instead of a circular range.
+- Incorrect coordinate system, something that is different from the given zero-indexed
+  system.
+- Solution which is too slow. Not using a multidimensional Fenwick tree

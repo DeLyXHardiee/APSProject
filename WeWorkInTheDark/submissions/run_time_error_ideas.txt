@@ -1,0 +1,8 @@
+- Out of bounds access if the program attempts to access an array element outside the valid
+  range
+- Division by zero, if the range of Ezio's eagle vision is set to zero when calculating
+  the number of guards within the range
+- Some sort of null pointer for some weird reason
+- Integer value exceeding the maximum allowed range for the data type, overflow
+- Infinite loops
+- Stack overflow, some sort of recursion maybe

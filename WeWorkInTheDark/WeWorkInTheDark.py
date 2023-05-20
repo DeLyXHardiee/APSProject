@@ -2,7 +2,7 @@ class FenwickTree2D:
     def __init__(self, n, m):
         self.n = n
         self.m = m
-        self.tree = [[0] * (m + 2) for _ in range(n + 2)]
+        self.tree = [[0] * (m + 1) for _ in range(n + 1)]
 
     def update(self, x, y, val):
         i = x + 1
@@ -68,8 +68,8 @@ def main():
             ezio_range = int(query[3])
             x_lower_bound = max(0, ezio_x - ezio_range)
             y_lower_bound = max(0, ezio_y - ezio_range)
-            x_upper_bound = min(x, ezio_x + ezio_range)
-            y_upper_bound = min(y, ezio_y + ezio_range)
+            x_upper_bound = min(x-1, ezio_x + ezio_range)
+            y_upper_bound = min(y-1, ezio_y + ezio_range)
             print(
                 fenwick2d.queryRange(
                     x_lower_bound, y_lower_bound, x_upper_bound, y_upper_bound

@@ -26,8 +26,8 @@ public class WeWorkInTheDark {
                     int ezio_range = Integer.parseInt(query[3]);
                     int x_lower_bound = Math.max(0, ezio_x-ezio_range);
                     int y_lower_bound = Math.max(0, ezio_y-ezio_range);
-                    int x_upper_bound = Math.min(x, ezio_x+ezio_range);
-                    int y_upper_bound = Math.min(y, ezio_y+ezio_range);
+                    int x_upper_bound = Math.min(x-1, ezio_x+ezio_range);
+                    int y_upper_bound = Math.min(y-1, ezio_y+ezio_range);
                     System.out.println(fenwick2d.queryRange(x_lower_bound, y_lower_bound, x_upper_bound, y_upper_bound));
                     continue;
 
@@ -57,7 +57,7 @@ class FenwickTree2D {
     public FenwickTree2D(int n, int m) {
         this.n = n;
         this.m = m;
-        tree = new int[n+2][m+2];
+        tree = new int[n+1][m+1];
     }
 
     public void update(int x, int y, int val) {

@@ -14,8 +14,8 @@ for _ in range(N):
     x = random.randint(0, X - 1)
     y = random.randint(0, Y - 1)
     num_guards = random.randint(1, 10)
-    query = f"{x} {y} {num_guards}"
-    guards.append((x, y, num_guards))
+    update = f"{x} {y} {num_guards}"
+    guards.append(update)
 
 M = random.randint(1, 1000000)
 queries = []
@@ -24,23 +24,23 @@ for _ in range(M):
     if query_type == "kill":
         x = random.randint(0, X - 1)
         y = random.randint(0, Y - 1)
-        query = f"kill {x} {y}"
+        query = f"{query_type} {x} {y}"
     elif query_type == "eaglevision":
         x = random.randint(0, X - 1)
         y = random.randint(0, Y - 1)
-        r = random.randint(1, min(X, Y))
-        query = f"eaglevision {x} {y} {r}"
+        r = random.randint(1, max(X, Y))
+        query = f"{query_type} {x} {y} {r}"
     else:  # Reinforcements
         x = random.randint(0, X - 1)
         y = random.randint(0, Y - 1)
         n = random.randint(1, 10)
-        query = f"reinforcements {x} {y} {n}"
+        query = f"{query_type} {x} {y} {n}"
     queries.append(query)
 
 # Print generated input
 print(f"{X} {Y} {N}")
 for guard in guards:
-    print(f"{guard[0]} {guard[1]} {guard[2]}")
+    print(guard)
 print(M)
 for query in queries:
     print(query)

@@ -3,7 +3,7 @@ def main():
     input_list = input_str.split(" ")
     x = int(input_list[0])
     y = int(input_list[1])
-    area = [x][y]
+    area = [ [0]*x for i in range(y)]
     n = int(input_list[2])
 
     for _ in range(n):

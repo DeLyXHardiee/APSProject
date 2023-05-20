@@ -1,6 +1,6 @@
-1. Fix the validator, so it validates that each line of output consists of one integer.
+1. (DONE) Fix the validator, so it validates that each line of output consists of one integer.
 2. Write sample cases for Kattis (the ones that are displayed on the website itself).
-3. Write brute-force solution to validate that the intended solution produces the correct output.
+3. (DONE) Write brute-force solution to validate that the intended solution produces the correct output.
 4. Write or generate text-files consisting of edge cases, which can be provided to generate_explicit.py.
 5. Update generate.sh
 6. Create solutions that produce a wrong answer or a runtime-error.

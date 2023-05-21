@@ -6,9 +6,9 @@ import sys
 #print(random.randrange(0, pow(10, 18)))
 
 # Generate random input
-X = random.randint(1000, 1000)
-Y = random.randint(1000, 1000)
-N = random.randint(100000, 100000)
+X = random.randint(10, 1000)
+Y = random.randint(10, 1000)
+N = random.randint(100, 100000)
 guards = []
 for _ in range(N):
     x = random.randint(0, X - 1)
@@ -17,7 +17,7 @@ for _ in range(N):
     update = f"{x} {y} {num_guards}"
     guards.append(update)
 
-M = random.randint(100000, 100000)
+M = random.randint(100, 100000)
 queries = []
 for _ in range(M):
     query_type = random.choice(["e", "r", "k"])

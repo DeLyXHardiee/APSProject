@@ -1,8 +1,10 @@
+#! /usr/bin/env python3
+# import time
 class FenwickTree2D:
     def __init__(self, n, m):
         self.n = n
         self.m = m
-        self.tree = [[0] * (m + 2) for _ in range(n + 2)]
+        self.tree = [[0] * (m + 1) for _ in range(n + 1)]
 
     def update(self, x, y, val):
         i = x + 1
@@ -14,51 +16,83 @@ class FenwickTree2D:
             i += i & -i
 
     def query(self, x, y):
-        total_guards = 0
+        sum = 0
         i = x + 1
         while i > 0:
             j = y + 1
             while j > 0:
-                total_guards += self.tree[i][j]
+                sum += self.tree[i][j]
                 j -= j & -j
             i -= i & -i
-        return total_guards
+        return sum
 
-def main():
-    input_str = input()
-    input_list = input_str.split(" ")
-    x = int(input_list[0])
-    y = int(input_list[1])
-    fenwick2d = FenwickTree2D(x, y)
-    n = int(input_list[2])
+    def queryRange(self, x1, y1, x2, y2):
+        return (
+            self.query(x2, y2)
+            - self.query(x1 - 1, y2)
+            - self.query(x2, y1 - 1)
+            + self.query(x1 - 1, y1 - 1)
+        )
 
-    for _ in range(n):
-        guards = input().split(" ")
-        fenwick2d.update(int(guards[0]), int(guards[1]), int(guards[2]))
+    def setToZero(self, x, y):
+        value = (
+            self.query(x, y)
+            - self.query(x - 1, y)
+            - self.query(x, y - 1)
+            + self.query(x - 1, y - 1)
+        )
+        self.update(x, y, -value)
 
-    m = int(input().strip())
+# start_time = time.time()
+input_str = input()
+input_list = input_str.split(" ")
+x = int(input_list[0])
+y = int(input_list[1])
+fenwick2d = FenwickTree2D(x, y)
+n = int(input_list[2])
+builder = []
 
-    for _ in range(m):
-        query = input().split(" ")
-        command = query[0]
+for _ in range(n):
+    guards = input().split(" ")
+    guards_x = int(guards[0])
+    guards_y = int(guards[1])
+    guards_amount = int(guards[2])
+    fenwick2d.update(guards_x, guards_y, guards_amount)
 
-        if command == "eaglevision":
-            ezio_range = int(query[3])
-            x_lower_bound = max(0, int(query[1]) - ezio_range)
-            y_lower_bound = max(0, int(query[2]) - ezio_range)
-            x_upper_bound = min(x, int(query[1]) + ezio_range)
-            y_upper_bound = min(y, int(query[2]) + ezio_range)
-            print(
-                fenwick2d.queryRange(
-                    x_lower_bound, y_lower_bound, x_upper_bound, y_upper_bound
-                )
-            )
+m = int(input().strip())
 
-        elif command == "reinforcements":
-            fenwick2d.update(int(query[1]), int(query[2]), int(query[3]))
+for _ in range(m):
+    query = input().split(" ")
+    command = query[0]
 
-        elif command == "kill":
-            fenwick2d.setToZero(int(query[1]), int(query[2]))
+    if command == "e":
+        ezio_x = int(query[1])
+        ezio_y = int(query[2])
+        ezio_range = int(query[3])
+        # bounds = f"Bounds: {x_lower_bound} {y_lower_bound} {x_upper_bound} {y_upper_bound}"
+        # print(bounds)
+        # print(
+        #     fenwick2d.queryRange(
+        #         x_lower_bound, y_lower_bound, x_upper_bound, y_upper_bound
+        #     )
+        # )
+        builder.append(str(fenwick2d.queryRange(
+                0, 0, x-1, y-1
+            )))
 
-if __name__ == "__main__":
-    main()
+    elif command == "r":
+        r_x = int(query[1])
+        r_y = int(query[2])
+        r_amount = int(query[3])
+        fenwick2d.update(r_x, r_y, r_amount)
+
+    elif command == "k":
+        k_x = int(query[1])
+        k_y = int(query[2])
+        fenwick2d.setToZero(k_x, k_y)
+result = "\n".join(builder)
+print(result)
+""" end_time = time.time()
+elapsed_time = end_time - start_time
+print(f"Elapsed time: {elapsed_time * 1000} milliseconds")
+"""

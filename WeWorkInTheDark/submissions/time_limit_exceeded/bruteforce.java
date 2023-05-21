@@ -59,6 +59,6 @@ public class bruteforce {
 
         long endTime = System.currentTimeMillis();
         long elapsed_time = endTime - startTime;
-        System.out.println("Elapsed time: " + elapsed_time + " milliseconds");
+        // System.out.println("Elapsed time: " + elapsed_time + " milliseconds");
     }
 }

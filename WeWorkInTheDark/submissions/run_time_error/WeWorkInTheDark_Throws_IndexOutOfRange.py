@@ -29,17 +29,17 @@ class FenwickTree2D:
     def queryRange(self, x1, y1, x2, y2):
         return (
             self.query(x2, y2)
-            - self.query(x1 - 1, y2)
-            - self.query(x2, y1 - 1)
-            + self.query(x1 - 1, y1 - 1)
+            - self.query(x1, y2)
+            - self.query(x2, y1)
+            + self.query(x1, y1)
         )
 
     def setToZero(self, x, y):
         value = (
             self.query(x, y)
-            - self.query(x - 1, y)
-            - self.query(x, y - 1)
-            + self.query(x - 1, y - 1)
+            - self.query(x , y)
+            - self.query(x, y)
+            + self.query(x, y)
         )
         self.update(x, y, -value)
 
@@ -69,10 +69,6 @@ for _ in range(m):
         ezio_x = int(query[1])
         ezio_y = int(query[2])
         ezio_range = int(query[3])
-        x_lower_bound = max(0, ezio_x - ezio_range)
-        y_lower_bound = max(0, ezio_y - ezio_range)
-        x_upper_bound = min(x-1, ezio_x + ezio_range)
-        y_upper_bound = min(y-1, ezio_y + ezio_range)
         # bounds = f"Bounds: {x_lower_bound} {y_lower_bound} {x_upper_bound} {y_upper_bound}"
         # print(bounds)
         # print(
@@ -81,7 +77,7 @@ for _ in range(m):
         #     )
         # )
         builder.append(str(fenwick2d.queryRange(
-                x_lower_bound, y_lower_bound, x_upper_bound, y_upper_bound
+                0, 0, x, y
             )))
 
     elif command == "r":

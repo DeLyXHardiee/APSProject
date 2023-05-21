@@ -52,7 +52,7 @@ public class WeWorkInTheDark {
         System.out.println(builder.toString().trim());
         long endTime = System.currentTimeMillis();
         long elapsedTime = endTime - startTime;
-        System.out.println("Elapsed time: " + elapsedTime + " milliseconds");
+        // System.out.println("Elapsed time: " + elapsedTime + " milliseconds");
 
     }
 

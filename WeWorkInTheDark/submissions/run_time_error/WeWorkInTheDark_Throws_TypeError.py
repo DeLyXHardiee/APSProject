@@ -1,10 +1,10 @@
 #! /usr/bin/env python3
-# import time
+
 class FenwickTree2D:
     def __init__(self, n, m):
         self.n = n
         self.m = m
-        self.tree = [[0] * (m + 1) for _ in range(n + 1)]
+        self.tree = [[0] * (m + 2) for _ in range(n + 2)]
 
     def update(self, x, y, val):
         i = x + 1
@@ -43,14 +43,12 @@ class FenwickTree2D:
         )
         self.update(x, y, -value)
 
-# start_time = time.time()
 input_str = input()
 input_list = input_str.split(" ")
 x = int(input_list[0])
 y = int(input_list[1])
 fenwick2d = FenwickTree2D(x, y)
-n = int(input_list[2])
-builder = []
+n = input_list[2]
 
 for _ in range(n):
     guards = input().split(" ")
@@ -71,18 +69,13 @@ for _ in range(m):
         ezio_range = int(query[3])
         x_lower_bound = max(0, ezio_x - ezio_range)
         y_lower_bound = max(0, ezio_y - ezio_range)
-        x_upper_bound = min(x-1, ezio_x + ezio_range)
-        y_upper_bound = min(y-1, ezio_y + ezio_range)
-        # bounds = f"Bounds: {x_lower_bound} {y_lower_bound} {x_upper_bound} {y_upper_bound}"
-        # print(bounds)
-        # print(
-        #     fenwick2d.queryRange(
-        #         x_lower_bound, y_lower_bound, x_upper_bound, y_upper_bound
-        #     )
-        # )
-        builder.append(str(fenwick2d.queryRange(
+        x_upper_bound = min(x, ezio_x + ezio_range)
+        y_upper_bound = min(y, ezio_y + ezio_range)
+        print(
+            fenwick2d.queryRange(
                 x_lower_bound, y_lower_bound, x_upper_bound, y_upper_bound
-            )))
+            )
+        )
 
     elif command == "r":
         r_x = int(query[1])
@@ -94,9 +87,3 @@ for _ in range(m):
         k_x = int(query[1])
         k_y = int(query[2])
         fenwick2d.setToZero(k_x, k_y)
-result = "\n".join(builder)
-print(result)
-""" end_time = time.time()
-elapsed_time = end_time - start_time
-print(f"Elapsed time: {elapsed_time * 1000} milliseconds")
-"""

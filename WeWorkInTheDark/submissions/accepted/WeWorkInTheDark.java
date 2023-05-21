@@ -3,12 +3,14 @@ import java.io.InputStreamReader;
 
 public class WeWorkInTheDark {
     public static void main(String[] args) throws Exception {
+        long startTime = System.currentTimeMillis();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String[] input = br.readLine().split(" ");
         int x = Integer.parseInt(input[0]);
         int y = Integer.parseInt(input[1]);
         var fenwick2d = new FenwickTree2D(x, y);
         int n = Integer.parseInt(input[2]);
+        var builder = new StringBuilder();
         for (int i = 0; i < n; i++){
             String[] guards = br.readLine().split(" ");
             int guards_x = Integer.parseInt(guards[0]);
@@ -20,7 +22,7 @@ public class WeWorkInTheDark {
         for (int i = 0; i < m; i++){
             String[] query = br.readLine().split(" ");
             switch (query[0]){
-                case "eaglevision":
+                case "e":
                     int ezio_x = Integer.parseInt(query[1]);
                     int ezio_y = Integer.parseInt(query[2]);
                     int ezio_range = Integer.parseInt(query[3]);
@@ -28,23 +30,29 @@ public class WeWorkInTheDark {
                     int y_lower_bound = Math.max(0, ezio_y-ezio_range);
                     int x_upper_bound = Math.min(x-1, ezio_x+ezio_range);
                     int y_upper_bound = Math.min(y-1, ezio_y+ezio_range);
-                    System.out.println(fenwick2d.queryRange(x_lower_bound, y_lower_bound, x_upper_bound, y_upper_bound));
+                    //System.out.println("Bounds: " + x_lower_bound + " " + y_lower_bound + " " +  x_upper_bound + " " + y_upper_bound);
+                    builder.append(fenwick2d.queryRange(x_lower_bound, y_lower_bound, x_upper_bound, y_upper_bound));
+                    builder.append("\n");
                     continue;
 
-                case "reinforcements":
+                case "r":
                     int r_x = Integer.parseInt(query[1]);
                     int r_y = Integer.parseInt(query[2]);
                     int r_amount = Integer.parseInt(query[3]);
                     fenwick2d.update(r_x, r_y, r_amount);
                     continue;
 
-                case "kill":
+                case "k":
                     int k_x = Integer.parseInt(query[1]);
                     int k_y = Integer.parseInt(query[2]);
                     fenwick2d.setToZero(k_x, k_y);
                     continue;
             }
         }
+        System.out.println(builder.toString().trim());
+        long endTime = System.currentTimeMillis();
+        long elapsedTime = endTime - startTime;
+        System.out.println("Elapsed time: " + elapsedTime + " milliseconds");
 
     }
 
@@ -57,7 +65,7 @@ class FenwickTree2D {
     public FenwickTree2D(int n, int m) {
         this.n = n;
         this.m = m;
-        tree = new int[n+1][m+1];
+        tree = new int[n+2][m+2];
     }
 
     public void update(int x, int y, int val) {
@@ -83,7 +91,8 @@ class FenwickTree2D {
     }
 
     public void setToZero(int x, int y) {
-        int value = query(x, y) - query(x-1, y) - query(x, y-1) + query(x-1, y-1);
+        int value = queryRange(x, y, x, y);
         update(x, y, -value);
+        //System.out.println("Everbody dead: " + queryRange(x, y, x, y));
     }
 }

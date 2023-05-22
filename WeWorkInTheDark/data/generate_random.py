@@ -6,9 +6,9 @@ import sys
 #print(random.randrange(0, pow(10, 18)))
 
 # Generate random input
-X = random.randint(10, 1000)
-Y = random.randint(10, 1000)
-N = random.randint(100, 100000)
+X = random.randint(1000, 1000)
+Y = random.randint(1000, 1000)
+N = random.randint(100000, 100000)
 guards = []
 for _ in range(N):
     x = random.randint(0, X - 1)
@@ -17,10 +17,10 @@ for _ in range(N):
     update = f"{x} {y} {num_guards}"
     guards.append(update)
 
-M = random.randint(100, 100000)
+M = random.randint(100000, 100000)
 queries = []
 for _ in range(M):
-    query_type = random.choice(["e", "r", "k"])
+    query_type = random.choice(["e"])
     if query_type == "k":
         x = random.randint(0, X - 1)
         y = random.randint(0, Y - 1)
@@ -38,18 +38,18 @@ for _ in range(M):
     queries.append(query)
 
 # Print generated input
-print(f"{X} {Y} {N}")
-for guard in guards:
-    print(guard)
-print(M)
-for query in queries:
-    print(query)
+# print(f"{X} {Y} {N}")
+# for guard in guards:
+#     print(guard)
+# print(M)
+# for query in queries:
+#     print(query)
 
-# filename = "input.txt"  # Change the filename as desired
-# with open(filename, "w") as file:
-#     file.write(f"{X} {Y} {N}\n")
-#     for guard in guards:
-#         file.write(f"{guard}\n")
-#     file.write(f"{M}\n")
-#     for query in queries:
-#         file.write(f"{query}\n")
+filename = "input.txt"  # Change the filename as desired
+with open(filename, "w") as file:
+    file.write(f"{X} {Y} {N}\n")
+    for guard in guards:
+        file.write(f"{guard}\n")
+    file.write(f"{M}\n")
+    for query in queries:
+        file.write(f"{query}\n")

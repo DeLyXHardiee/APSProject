@@ -1,5 +1,4 @@
 import random
-import sys
 
 #random.seed(int(sys.argv[-1])) # fix seed of random generator to last argument
 
@@ -9,12 +8,17 @@ import sys
 X = random.randint(10, 1000)
 Y = random.randint(10, 1000)
 N = random.randint(100, 100000)
+visited = set()
 guards = []
 for _ in range(N):
     x = random.randint(0, X - 1)
     y = random.randint(0, Y - 1)
+    while (x,y) in visited:
+        x = random.randint(0, X - 1)
+        y = random.randint(0, Y - 1)
     num_guards = random.randint(1, 10)
     update = f"{x} {y} {num_guards}"
+    visited.add((x,y))
     guards.append(update)
 
 M = random.randint(100, 100000)

@@ -8,19 +8,19 @@ You are hopelessly outnumbered, so stealth is the only option. Luckily you have 
 
 \section*{Input}
 
-The first line of input contains two integers X, Y (1 $\le$ X, Y $\le$ 1000), the dimensions of the area you are in. After that follows another integer N (1 $\le$ N $\le$ X * Y), containing three integer: coordinates x, y and the number of guards at that position. The coordinates are zero-indexed.
+The first line of input contains three integers X, Y (1 $\le$ X, Y $\le$ 1000) and N (1 $\le$ N $\le$ 100000). X and Y represent the dimensions of the area you are in. After that follows N lines containing three integers: coordinates x, y and the number of guards that should be added to that position. The coordinates are zero-indexed.
 
-The next line of input contains an integer M (1 $\le$ M $\le$ 1000000), which is the number of queries. Each of the next M lines contains a query. A query can be either of the following three types:
+The next line of input contains an integer M (1 $\le$ M $\le$ 100000). Each of the next M lines contains a query. A query can be either of the following three types:
 
 \begin{itemize}
-    \item "kill x y": This query represents Ezio assassinating a target at a specific coordinate. The value of the cell at that coordinate should be set to zero
-    \item "eaglevision x y r": This query represents Ezio using his eagle vision ability to locate enemies around him within a certain range. x and y represent the coordinates of Ezio's current location, and r represents the range of his eagle vision. The program should output the number of enemies that are within range of Ezio's eagle vision. The range extends horizontally left-right and vertically up-down.
-    \item "reinforcements x y n": This query represents a number of guards arriving in the area. x y represents their coordinate and n represents their numbers.
+    \item "k x y": This query represents Ezio killing targets at a specific coordinate. The value of the cell at that coordinate should be set to zero
+    \item "e x y r": This query represents Ezio using his eagle vision ability to locate enemies around him within a certain range. x and y represent the coordinates of Ezio's current location, and r represents the range of his eagle vision. The program should output the number of enemies that are within range of Ezio's eagle vision. The range extends horizontally left-right and vertically up-down, and can extend the bounds of the arena. However there are never any templars outside the arena.
+    \item "r x y n": This query represents a number of guards arriving in the area. x y represents their coordinate and n represents their numbers. Their numbers should be added to the existing number of guards at the specified.
 \end{itemize}
 
 \section*{Output}
 
 \begin{itemize}
-    \item For each "eaglevision" query, output a single integer on a new line, representing the number of enemies that are within range of Ezio's eagle vision.
-    \item There should be no output for "kill" queries or "reinforcements" queries. 
+    \item For each "e" query, output a single integer on a new line, representing the number of enemies that are within range of Ezio's eagle vision.
+    \item There should be no output for "k" queries or "r" queries. 
 \end{itemize}

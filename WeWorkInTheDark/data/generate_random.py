@@ -41,7 +41,7 @@ for _ in range(M):
         query = f"{query_type} {x} {y} {n}"
     queries.append(query)
 
-# Print generated input
+#Print generated input
 print(f"{X} {Y} {N}")
 for guard in guards:
     print(guard)

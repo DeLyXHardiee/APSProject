@@ -1,5 +1,4 @@
 #! /usr/bin/env python3
-# import time
 class FenwickTree2D:
     def __init__(self, n, m):
         self.n = n
@@ -69,13 +68,6 @@ for _ in range(m):
         ezio_x = int(query[1])
         ezio_y = int(query[2])
         ezio_range = int(query[3])
-        # bounds = f"Bounds: {x_lower_bound} {y_lower_bound} {x_upper_bound} {y_upper_bound}"
-        # print(bounds)
-        # print(
-        #     fenwick2d.queryRange(
-        #         x_lower_bound, y_lower_bound, x_upper_bound, y_upper_bound
-        #     )
-        # )
         builder.append(str(fenwick2d.queryRange(
                 0, 0, x, y
             )))
@@ -92,7 +84,3 @@ for _ in range(m):
         fenwick2d.setToZero(k_x, k_y)
 result = "\n".join(builder)
 print(result)
-""" end_time = time.time()
-elapsed_time = end_time - start_time
-print(f"Elapsed time: {elapsed_time * 1000} milliseconds")
-"""

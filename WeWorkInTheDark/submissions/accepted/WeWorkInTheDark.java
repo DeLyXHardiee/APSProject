@@ -3,7 +3,6 @@ import java.io.InputStreamReader;
 
 public class WeWorkInTheDark {
     public static void main(String[] args) throws Exception {
-        long startTime = System.currentTimeMillis();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String[] input = br.readLine().split(" ");
         int x = Integer.parseInt(input[0]);
@@ -30,7 +29,6 @@ public class WeWorkInTheDark {
                     int y_lower_bound = Math.max(0, ezio_y-ezio_range);
                     int x_upper_bound = Math.min(x-1, ezio_x+ezio_range);
                     int y_upper_bound = Math.min(y-1, ezio_y+ezio_range);
-                    //System.out.println("Bounds: " + x_lower_bound + " " + y_lower_bound + " " +  x_upper_bound + " " + y_upper_bound);
                     builder.append(fenwick2d.queryRange(x_lower_bound, y_lower_bound, x_upper_bound, y_upper_bound));
                     builder.append("\n");
                     continue;
@@ -50,9 +48,6 @@ public class WeWorkInTheDark {
             }
         }
         System.out.println(builder.toString().trim());
-        long endTime = System.currentTimeMillis();
-        long elapsedTime = endTime - startTime;
-        // System.out.println("Elapsed time: " + elapsedTime + " milliseconds");
 
     }
 
@@ -93,6 +88,5 @@ class FenwickTree2D {
     public void setToZero(int x, int y) {
         int value = queryRange(x, y, x, y);
         update(x, y, -value);
-        //System.out.println("Everbody dead: " + queryRange(x, y, x, y));
     }
 }

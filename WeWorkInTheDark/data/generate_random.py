@@ -1,9 +1,5 @@
 import random
 
-#random.seed(int(sys.argv[-1])) # fix seed of random generator to last argument
-
-#print(random.randrange(0, pow(10, 18)))
-
 # Generate random input
 X = random.randint(10, 1000)
 Y = random.randint(10, 1000)
@@ -48,12 +44,3 @@ for guard in guards:
 print(M)
 for query in queries:
     print(query)
-
-# filename = "input.txt"  # Change the filename as desired
-# with open(filename, "w") as file:
-#     file.write(f"{X} {Y} {N}\n")
-#     for guard in guards:
-#         file.write(f"{guard}\n")
-#     file.write(f"{M}\n")
-#     for query in queries:
-#         file.write(f"{query}\n")

@@ -3,7 +3,7 @@
 import random
 import sys
 
-# (X, Y, N, M, Q, R)
+# (X, Y, N, M, Q)
 
 # Generate explicit input
 X = int(sys.argv[1])
@@ -37,15 +37,16 @@ for _ in range(M):
     elif query_type == "e":
         x = random.randint(0, X - 1)
         y = random.randint(0, Y - 1)
-        r = int(sys.argv[6])
+        r = random.randint(1, 1000)
         query = f"{query_type} {x} {y} {r}"
     else:  # Reinforcements
         x = random.randint(0, X - 1)
         y = random.randint(0, Y - 1)
-        n = 10
+        n = random.randint(1, 10)
         query = f"{query_type} {x} {y} {n}"
     queries.append(query)
 
+# Print explicit input
 print(f"{X} {Y} {N}")
 for guard in guards:
     print(guard)

@@ -18,8 +18,8 @@ tc  huge_grid_all_queries generate_explicit 1000 1000 100000 100000 1
 tc  huge_grid_only_eaglevision generate_explicit 1000 1000 100000 100000 0
 tc  small_grid_few_queries generate_explicit 1 1 1 10 1
 tc  small_grid_many_queries generate_explicit 1 1 1 100000 1
-tc  medium_grid_large_range generate_explicit 100 100 500 100 1
-tc  medium_grid_small_range generate_explicit 100 100 500 100 1
+tc  large_x_small_y generate_explicit 999 1 300 1000 1
+tc  small_x_large_y generate_explicit 1 999 300 1000 1
 tc  random1 generate_random
 tc  random2 generate_random
 tc  random3 generate_random

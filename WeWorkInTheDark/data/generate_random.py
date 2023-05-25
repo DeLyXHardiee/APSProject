@@ -3,7 +3,7 @@ import random
 # Generate random input
 X = random.randint(10, 1000)
 Y = random.randint(10, 1000)
-N = random.randint(100, 100000)
+N = min(random.randint(100, 100000), X * Y)
 visited = set()
 guards = []
 for _ in range(N):
